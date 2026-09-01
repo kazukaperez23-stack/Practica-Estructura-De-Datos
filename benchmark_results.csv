@@ -1,0 +1,28 @@
+test_type,scenario,n,algorithm,time_ms
+scenario,Random,100000,QuickSort,34.7133
+scenario,Random,100000,HeapSort,87.0612
+scenario,Random,100000,AVL Tree,62.4086
+scenario,Sorted,100000,QuickSort,11.9497
+scenario,Sorted,100000,HeapSort,54.2644
+scenario,Sorted,100000,AVL Tree,27.2850
+scenario,Reversed,100000,QuickSort,21.9669
+scenario,Reversed,100000,HeapSort,57.1962
+scenario,Reversed,100000,AVL Tree,28.2267
+scalability,Random,1000,QuickSort,0.2370
+scalability,Random,1000,HeapSort,0.4459
+scalability,Random,1000,AVL Tree,0.2077
+scalability,Random,5000,QuickSort,1.2134
+scalability,Random,5000,HeapSort,2.1168
+scalability,Random,5000,AVL Tree,1.4387
+scalability,Random,10000,QuickSort,2.6048
+scalability,Random,10000,HeapSort,4.6790
+scalability,Random,10000,AVL Tree,3.1442
+scalability,Random,25000,QuickSort,7.3385
+scalability,Random,25000,HeapSort,13.8442
+scalability,Random,25000,AVL Tree,10.1324
+scalability,Random,50000,QuickSort,16.8082
+scalability,Random,50000,HeapSort,33.4784
+scalability,Random,50000,AVL Tree,22.5554
+scalability,Random,100000,QuickSort,33.6463
+scalability,Random,100000,HeapSort,67.2911
+scalability,Random,100000,AVL Tree,51.3282

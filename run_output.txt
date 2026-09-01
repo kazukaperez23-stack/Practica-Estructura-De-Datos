@@ -1,0 +1,74 @@
+Loaded 100000 words from dataset.txt
+
+1. Correctness verification
+===========================
+QuickSort produced a sorted array of the expected size : true
+HeapSort produced a sorted array of the expected size  : true
+AVL inorder traversal is sorted (100000 unique keys) : true
+All three results are identical                       : true
+
+2. Memory usage estimation
+==========================
+n = 100000 words, 943878 characters total
+sizeof(std::string) = 32 bytes | sizeof(ds::AVLNode) = 56 bytes (string + 2 pointers + int height)
+
+vector<string>  (QuickSort / HeapSort)
+  container (n * sizeof(string)) : 3.05 MB
+  approx. character payload      : 921.76 KB
+  approx. total                  : 3.95 MB
+
+AVL tree (100000 nodes, height = 20)
+  node overhead (n * sizeof(AVLNode)) : 5.34 MB
+  approx. character payload           : 921.76 KB
+  approx. total                       : 6.24 MB
+  extra overhead vs vector            : 2.29 MB
+
+3. Experiment A - input scenarios (n = 100000)
+==============================================
+Methodology: each value is the mean of 3 runs. The input is copied before each run, so the copy cost
+is paid outside the measured region. Ordered inputs are produced
+with our own QuickSort, never with a library sort.
+
+Scenario           QuickSort      HeapSort      AVL Tree
+--------------------------------------------------------
+Random                22.258        41.164        32.922
+Sorted                 9.000        36.524        19.679
+Reversed              13.869        34.115        19.078
+--------------------------------------------------------
+(times in milliseconds)
+
+4. Experiment B - scalability on random data
+============================================
+If the implementations really behave as O(n log n), then t/(n log n)
+should stay roughly constant as n grows.
+
+n             QuickSort     HeapSort     AVL Tree   |  Q/(nlogn)  H/(nlogn)  A/(nlogn)
+-----------------------------------------------------------------------------------
+1000              0.132        0.204        0.141   |     13.229     20.490     14.108
+5000              0.842        1.377        0.859   |     13.709     22.419     13.978
+10000             1.822        3.037        1.968   |     13.711     22.859     14.807
+25000             4.990        8.548        5.959   |     13.662     23.403     16.315
+50000            10.563       18.701       13.681   |     13.534     23.961     17.529
+100000           22.575       42.240       34.280   |     13.592     25.431     20.638
+-----------------------------------------------------------------------------------
+(times in milliseconds; normalised columns are t/(n*log2 n) x 1e6)
+
+Files written
+=============
+benchmark_results.csv : all measurements (for charting)
+sorted_dataset.txt    : the 100000 words in alphabetical order
+
+Single-run reference times (part 1): QuickSort 21.765 ms | HeapSort 40.691 ms | AVL 32.066 ms
+
+Sample of final sorted result (first 5 / last 5 words):
+  a
+  aahing
+  aaliis
+  aaronite
+  aarrgh
+  ...
+  zymotize
+  zyryan
+  zythum
+  zyzomys
+  zyzzogeton
